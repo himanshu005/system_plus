@@ -1,19 +1,17 @@
-package com.android.assignment.info.Adapter
+package com.android.assignment.info.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.assignment.R
-import com.android.assignment.model.CastItem
 import com.android.assignment.model.CrewItem
 import com.bumptech.glide.Glide
 
 
-class CrewAdapter(var crewItemList: List<CrewItem>?)
+class CrewAdapter(private var crewItemList: List<CrewItem>?)
     : RecyclerView.Adapter<CrewAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
@@ -35,15 +33,15 @@ class CrewAdapter(var crewItemList: List<CrewItem>?)
         return crewItemList?.size!!
     }
 
-    //the class is hodling the list view
+    //the class is holding the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.title) as TextView
-        val thumbnail = itemView.findViewById(R.id.thumbnail) as ImageView
+        val thumbnail = itemView.findViewById(R.id.tvThumbnail) as ImageView
         val tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo) as TextView
 
         fun bindItems(itemCrew: CrewItem) {
-            var imgPath = "http://image.tmdb.org/t/p/w185/" + itemCrew.profile_path;
-            Glide.with(itemView.context).load(imgPath).into(thumbnail);
+            val imgPath = """http://image.tmdb.org/t/p/w185/${itemCrew.profile_path}"""
+            Glide.with(itemView.context).load(imgPath).into(thumbnail)
             title.text = itemCrew.name
             tvMoreInfo.visibility=View.GONE
         }

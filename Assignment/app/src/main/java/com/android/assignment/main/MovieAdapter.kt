@@ -11,7 +11,7 @@ import com.android.assignment.model.ResultsItem
 import com.bumptech.glide.Glide
 
 
-class MovieAdapter(var movieList: ArrayList<ResultsItem>, var listener: (ResultsItem) -> Unit)
+class MovieAdapter(private var movieList: ArrayList<ResultsItem>, private var listener: (ResultsItem) -> Unit)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
@@ -36,15 +36,15 @@ class MovieAdapter(var movieList: ArrayList<ResultsItem>, var listener: (Results
         return movieList.size
     }
 
-    //the class is hodling the list view
+    //the class is holding the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.title) as TextView
-        val thumbnail = itemView.findViewById(R.id.thumbnail) as ImageView
+        val thumbnail = itemView.findViewById(R.id.tvThumbnail) as ImageView
         val tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo) as TextView
 
         fun bindItems(itemResult: ResultsItem, listener: (ResultsItem) -> Unit) {
-            var imgPath = "http://image.tmdb.org/t/p/w185/" + itemResult.poster_path;
-            Glide.with(itemView.context).load(imgPath).into(thumbnail);
+            val imgPath = """http://image.tmdb.org/t/p/w185/${itemResult.poster_path}"""
+            Glide.with(itemView.context).load(imgPath).into(thumbnail)
             title.text = itemResult.title
 
             tvMoreInfo.setOnClickListener {

@@ -1,4 +1,4 @@
-package com.android.assignment.info.Adapter
+package com.android.assignment.info.adapter
 
 
 import android.support.v4.app.Fragment
@@ -8,15 +8,15 @@ import com.android.assignment.info.fragment.CastDetailFragment
 import com.android.assignment.info.fragment.CrewDetailFragment
 import com.android.assignment.model.Credits
 
-class MoviesPagerAdapter(fragmentManager: FragmentManager, private val credits: ArrayList<String> ,var creditsData: Credits) :
+class MoviesPagerAdapter(fragmentManager: FragmentManager, private val credits: ArrayList<String>, private var creditsData: Credits) :
         FragmentStatePagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
-      if (position==0){
-          return CrewDetailFragment.newInstance(creditsData.crew)
-      }else{
-          return CastDetailFragment.newInstance(creditsData.cast)
-      }
+        return if (position==0){
+            CrewDetailFragment.newInstance(this.creditsData.crew)
+        }else{
+            CastDetailFragment.newInstance(this.creditsData.cast)
+        }
 
     }
     override fun getPageTitle(position: Int): CharSequence {

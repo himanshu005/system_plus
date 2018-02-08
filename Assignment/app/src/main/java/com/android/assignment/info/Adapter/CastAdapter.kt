@@ -1,7 +1,6 @@
-package com.android.assignment.info.Adapter
+package com.android.assignment.info.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import com.android.assignment.model.CastItem
 import com.bumptech.glide.Glide
 
 
-class CastAdapter(var castItemList: List<CastItem>?)
+class CastAdapter(private var castItemList: List<CastItem>?)
     : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
@@ -34,14 +33,14 @@ class CastAdapter(var castItemList: List<CastItem>?)
         return castItemList?.size!!
     }
 
-    //the class is hodling the list view
+    //the class is holding the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById(R.id.title) as TextView
-        val thumbnail = itemView.findViewById(R.id.thumbnail) as ImageView
+        val thumbnail = itemView.findViewById(R.id.tvThumbnail) as ImageView
         val tvMoreInfo = itemView.findViewById(R.id.tvMoreInfo) as TextView
 
         fun bindItems(itemCast: CastItem) {
-            var imgPath = "http://image.tmdb.org/t/p/w185/" + itemCast.profile_path;
+            val imgPath = """http://image.tmdb.org/t/p/w185/${itemCast.profile_path}"""
             Glide.with(itemView.context).load(imgPath).into(thumbnail)
             title.text = itemCast.name
             tvMoreInfo.visibility=View.GONE

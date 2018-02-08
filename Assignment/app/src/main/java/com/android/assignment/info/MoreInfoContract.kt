@@ -11,7 +11,7 @@ object MoreInfoContract {
     }
 
     interface Presenter : BaseMvpPresenter<View> {
-        fun loadCredits(id :String)
+        fun loadCredits(movieID :String)
 
     }
 }

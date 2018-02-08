@@ -40,12 +40,12 @@ object ApiManager {
 
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(createMoshiConverter())
+                .addConverterFactory(createMoshConverter())
                 .client(client.build())
                 .build()
     }
 
-    private fun createMoshiConverter(): MoshiConverterFactory = MoshiConverterFactory.create()
+    private fun createMoshConverter(): MoshiConverterFactory = MoshiConverterFactory.create()
 
     private fun initServices(retrofit: Retrofit) {
         mRequestInterface = retrofit.create(RequestInterface::class.java)
